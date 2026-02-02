@@ -5,3 +5,15 @@
 html, body, #root {
   height: 100%;
 }
+
+/* Small helpers for 3D tilt effects */
+.tilt { perspective: 1000px; }
+.tilt-inner { transform-style: preserve-3d; transition: transform 200ms ease; }
+
+/* A tiny utility for a subtle popup transition */
+@keyframes toast-enter {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fixed[role="status"] { animation: toast-enter 200ms ease both; }

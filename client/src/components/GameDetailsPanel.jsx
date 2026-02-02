@@ -16,7 +16,7 @@ export default function GameDetailsPanel({
   }
 
   return (
-    <div className="bg-white/10 backdrop-blur-xl p-6 rounded-3xl border border-white/20 sticky top-8">
+    <div className="bg-white/10 backdrop-blur-xl p-6 rounded-3xl border border-white/20 sticky top-8 transform-gpu transition-transform duration-200 hover:scale-105 hover:-translate-y-1">
       <h2 className="text-2xl font-bold mb-1">{selectedGame.title}</h2>
       <p className="text-indigo-400 text-sm mb-4">
         {selectedGame.developer} • {selectedGame.releaseYear}
@@ -30,14 +30,14 @@ export default function GameDetailsPanel({
         {owned ? (
           <button
             onClick={() => onRemove(selectedGame._id)}
-            className="w-full bg-rose-600 py-3 rounded-xl font-bold hover:bg-rose-500 transition"
+            className="w-full bg-rose-600 py-3 rounded-xl font-bold hover:bg-rose-500 transition-transform transform-gpu hover:scale-105"
           >
             Remove
           </button>
         ) : (
           <button
             onClick={() => onAdd(selectedGame._id)}
-            className="w-full bg-indigo-600 py-3 rounded-xl font-bold hover:bg-indigo-500 transition"
+            className="w-full bg-indigo-600 py-3 rounded-xl font-bold hover:bg-indigo-500 transition-transform transform-gpu hover:scale-105"
           >
             Add to Collection
           </button>
@@ -45,7 +45,7 @@ export default function GameDetailsPanel({
 
         <button
           onClick={onClose}
-          className="w-full bg-white/5 py-3 rounded-xl font-bold hover:bg-white/10 transition"
+          className="w-full bg-white/5 py-3 rounded-xl font-bold hover:bg-white/10 transition-transform transform-gpu hover:scale-102"
         >
           Close
         </button>
