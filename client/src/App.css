@@ -40,3 +40,267 @@
 .read-the-docs {
   color: #888;
 }
+
+
+
+/* Container and Layout */
+.nexus-container {
+position: relative;
+display: flex;
+align-items: center;
+justify-content: center;
+min-height: screen;
+background-color: #0a0c10;
+overflow: hidden;
+font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
+
+/* 3D Perspective Wrapper */
+.auth-perspective {
+position: relative;
+z-index: 10;
+width: 100%;
+max-width: 420px;
+padding: 3rem 1.5rem;
+perspective: 1000px;
+}
+
+/* Background Animated Orbs */
+.bg-orb {
+position: absolute;
+width: 50%;
+height: 50%;
+filter: blur(120px);
+border-radius: 9999px;
+animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+pointer-events: none;
+}
+
+.orb-1 {
+top: -10%;
+left: -10%;
+background-color: rgba(79, 70, 229, 0.2);
+}
+
+.orb-2 {
+bottom: -10%;
+right: -10%;
+background-color: rgba(147, 51, 234, 0.2);
+animation-delay: 1s;
+}
+
+@keyframes pulse {
+0%, 100% { opacity: 0.5; }
+50% { opacity: 0.8; }
+}
+
+/* The Card Spark Border */
+.auth-card-wrapper {
+position: relative;
+padding: 2px;
+border-radius: 2.5rem;
+transition: transform 0.2s ease-out;
+transform-style: preserve-3d;
+overflow: hidden;
+}
+
+
+
+/* Inner Card Styling */
+.auth-card-inner {
+position: relative;
+background-color: rgba(13, 15, 20, 0.96);
+backdrop-filter: blur(40px);
+padding: 2.5rem;
+border-radius: 2.4rem;
+border: 1px solid rgba(255, 255, 255, 0.05);
+height: 100%;
+width: 100%;
+overflow: hidden;
+}
+
+/* Branding */
+.brand-header {
+text-align: center;
+margin-bottom: 2.5rem;
+position: relative;
+}
+
+.brand-icon {
+display: inline-block;
+padding: 0.75rem;
+border-radius: 1rem;
+background: linear-gradient(to bottom right, rgba(79, 70, 229, 0.2), rgba(168, 85, 247, 0.2));
+border: 1px solid rgba(255, 255, 255, 0.05);
+margin-bottom: 1rem;
+}
+
+.brand-title {
+font-size: 2.25rem;
+font-weight: 900;
+letter-spacing: -0.05em;
+color: white;
+}
+
+.brand-subtitle {
+font-size: 0.75rem;
+font-weight: 700;
+letter-spacing: 0.2em;
+color: #64748b;
+text-transform: uppercase;
+margin-top: 0.5rem;
+}
+
+/* Alerts */
+.auth-alert {
+margin-bottom: 1.5rem;
+padding: 0.75rem;
+border-radius: 0.75rem;
+text-align: center;
+font-size: 0.75rem;
+font-weight: 700;
+border-width: 1px;
+}
+
+.alert-error {
+background-color: rgba(239, 68, 68, 0.1);
+border-color: rgba(239, 68, 68, 0.2);
+color: #f87171;
+}
+
+.alert-success {
+background-color: rgba(16, 185, 129, 0.1);
+border-color: rgba(16, 185, 129, 0.2);
+color: #34d399;
+}
+
+/* Form Elements */
+.auth-form {
+display: flex;
+flex-direction: column;
+gap: 1.25rem;
+}
+
+.auth-input {
+width: 100%;
+background-color: rgba(0, 0, 0, 0.4);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 1rem;
+padding: 1rem 1.25rem;
+color: white;
+outline: none;
+transition: all 0.3s;
+}
+
+.auth-input:focus {
+border-color: rgba(99, 102, 241, 0.5);
+box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+background-color: rgba(0, 0, 0, 0.5);
+}
+
+.auth-input::placeholder {
+color: #475569;
+}
+
+/* Submit Button */
+.auth-submit-btn {
+position: relative;
+width: 100%;
+padding: 1rem;
+border-radius: 1rem;
+font-weight: 700;
+color: white;
+border: none;
+cursor: pointer;
+overflow: hidden;
+margin-top: 0.5rem;
+transition: transform 0.1s;
+}
+
+.auth-submit-btn:active {
+transform: scale(0.97);
+}
+
+.auth-submit-btn:disabled {
+opacity: 0.5;
+cursor: not-allowed;
+}
+
+.btn-bg {
+position: absolute;
+inset: 0;
+background: linear-gradient(to bottom right, #4f46e5, #7e22ce);
+transition: transform 0.3s;
+}
+
+.auth-submit-btn:hover .btn-bg {
+transform: scale(1.1);
+}
+
+.btn-content {
+position: relative;
+z-index: 10;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.75rem;
+}
+
+.arrow-icon {
+transition: transform 0.2s;
+}
+
+.auth-submit-btn:hover .arrow-icon {
+transform: translateX(4px);
+}
+
+/* Loading Spinner */
+.spinner {
+width: 1.25rem;
+height: 1.25rem;
+border: 2px solid rgba(255, 255, 255, 0.3);
+border-top-color: white;
+border-radius: 9999px;
+animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+to { transform: rotate(360deg); }
+}
+
+/* Footer & Extras */
+.auth-footer {
+margin-top: 2rem;
+text-align: center;
+}
+
+.toggle-mode-btn {
+background: none;
+border: none;
+color: #64748b;
+font-size: 0.875rem;
+font-weight: 500;
+cursor: pointer;
+transition: color 0.2s;
+}
+
+.toggle-mode-btn:hover {
+color: white;
+}
+
+.highlight {
+color: #818cf8;
+font-weight: 700;
+margin-left: 0.25rem;
+}
+
+.system-tag {
+margin-top: 2rem;
+text-align: center;
+font-size: 0.625rem;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+color: #475569;
+font-weight: 600;
+opacity: 0.6;
+}
