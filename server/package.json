@@ -4,9 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --runInBand",
     "dev": "node --watch src/server.js",
     "start": "node src/server.js"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.4.4",
+    "mongodb-memory-server": "^8.11.0"
   },
   "keywords": [],
   "author": "",
