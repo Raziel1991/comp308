@@ -233,7 +233,23 @@ export default function LandingPage({ onOpenAuth }) {
 
         {/* Footer */}
         <div className="mt-14 pb-10 text-center text-xs text-slate-500">
-          Built for COMP308 Exercise 2 • MERN stack • The background stars are there to distract from bugs (kidding… mostly).
+          <div>Built for COMP308 Exercise 2 • MERN stack • The background stars are there to distract from bugs (kidding… mostly).</div>
+          <div className="mt-3 flex items-center justify-center gap-4 text-sm">
+            <a href="https://github.com/Raziel1991" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition" title="Raziel1991 on GitHub">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true" focusable="false"><path d="M12 .5C5.5.5.5 5.5.5 12c0 5 3.2 9.3 7.7 10.8.6.1.8-.3.8-.6v-2.1c-3.1.6-3.8-1.3-3.8-1.3-.5-1.2-1.2-1.5-1.2-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.3 1.1 2.8.8.1-.6.4-1.1.7-1.3-2.5-.3-5.1-1.3-5.1-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2.9-.3 2-.4 3-.4s2.1.1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.6 5.4-5.2 5.7.4.3.7.9.7 1.8v2.7c0 .3.2.7.8.6C20.8 21.3 24 17 24 12 24 5.5 18.5.5 12 .5z"/></svg>
+              <span>Raziel1991</span>
+            </a>
+
+            <a href="https://github.com/AngelicaCuadrado" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition" title="AngelicaCuadrado on GitHub">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true" focusable="false"><path d="M12 .5C5.5.5.5 5.5.5 12c0 5 3.2 9.3 7.7 10.8.6.1.8-.3.8-.6v-2.1c-3.1.6-3.8-1.3-3.8-1.3-.5-1.2-1.2-1.5-1.2-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.3 1.1 2.8.8.1-.6.4-1.1.7-1.3-2.5-.3-5.1-1.3-5.1-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2.9-.3 2-.4 3-.4s2.1.1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.6 5.4-5.2 5.7.4.3.7.9.7 1.8v2.7c0 .3.2.7.8.6C20.8 21.3 24 17 24 12 24 5.5 18.5.5 12 .5z"/></svg>
+              <span>AngelicaCuadrado</span>
+            </a>
+
+            <a href="https://github.com/sduffney" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition" title="sduffney on GitHub">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true" focusable="false"><path d="M12 .5C5.5.5.5 5.5.5 12c0 5 3.2 9.3 7.7 10.8.6.1.8-.3.8-.6v-2.1c-3.1.6-3.8-1.3-3.8-1.3-.5-1.2-1.2-1.5-1.2-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.3 1.1 2.8.8.1-.6.4-1.1.7-1.3-2.5-.3-5.1-1.3-5.1-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2.9-.3 2-.4 3-.4s2.1.1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.6 5.4-5.2 5.7.4.3.7.9.7 1.8v2.7c0 .3.2.7.8.6C20.8 21.3 24 17 24 12 24 5.5 18.5.5 12 .5z"/></svg>
+              <span>sduffney</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
