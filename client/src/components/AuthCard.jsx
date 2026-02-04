@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { api } from "../lib/api";
 import "./AuthCard.css";
 
@@ -6,14 +6,13 @@ export default function AuthCard({ onAuthed, showMsg, initialMode = "login" }) {
   const [authMode, setAuthMode] = useState(initialMode);
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [busy, setBusy] = useState(false);
-  const [localMsg, setLocalMsg] = useState(null);
+  const [message, setMessage] = useState(null);
   const cardRef = useRef(null);
 
-
-  function showLocalMsg(text, type = "error") {
-    setLocalMsg({ text, type });
-    window.setTimeout(() => setLocalMsg(null), 4000);
-  }
+  const showLocalMsg = (text, type = "success") => {
+    setMessage({ text, type });
+    setTimeout(() => setMessage(null), 4000);
+  };
 
   const handleMove = (e) => {
     const el = cardRef.current;
@@ -23,16 +22,28 @@ export default function AuthCard({ onAuthed, showMsg, initialMode = "login" }) {
     const y = e.clientY - rect.top;
     const cx = rect.width / 2;
     const cy = rect.height / 2;
-    const rx = ((y - cy) / cy) * 10; // Slightly more tilt
+    const rx = ((y - cy) / cy) * 10;
     const ry = ((x - cx) / cx) * -10;
-    el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.05)`;
+    // Applying tilt to card
+    el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.02)`;
+
+    // Slight parallax for the starfield
+    const stars = el.querySelector('.card-stars');
+    if (stars) {
+      stars.style.transform = `translateX(${ry * 2}px) translateY(${rx * -2}px)`;
+    }
   };
 
   const handleLeave = () => {
     const el = cardRef.current;
     if (!el) return;
     el.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
-  };
+
+    const stars = el.querySelector('.card-stars');
+    if (stars) {
+      stars.style.transform = "translateX(0) translateY(0)";
+    }
+  }; 
 
   const submit = async (e) => {
     e.preventDefault();
@@ -67,7 +78,12 @@ export default function AuthCard({ onAuthed, showMsg, initialMode = "login" }) {
           onMouseLeave={handleLeave}
           className="auth-card-wrapper"
         >
+          {/* THE SPARK */}
+          <div className="spark-border" />
+          
           <div className="auth-card-inner">
+            {/* Starfield / Parallax Dust Effect */}
+            <div className="card-stars" aria-hidden="true" />
 
             <div className="text-center mb-10">
               <div className="brand-icon">
@@ -79,13 +95,13 @@ export default function AuthCard({ onAuthed, showMsg, initialMode = "login" }) {
               <p className="brand-subtitle">Secure Access Portal</p>
             </div>
 
-            {localMsg && (
-              <div className={`auth-alert ${localMsg.type === 'error' ? 'alert-error' : 'alert-success'}`}>
-                {localMsg.text}
+            {message && (
+              <div className={`auth-alert ${message.type === 'error' ? 'alert-error' : 'alert-success'}`}>
+                {message.text}
               </div>
             )}
 
-            <form onSubmit={submit}>
+            <form onSubmit={submit} className="auth-form">
               <input
                 className="auth-input"
                 placeholder="Username"
@@ -114,7 +130,7 @@ export default function AuthCard({ onAuthed, showMsg, initialMode = "login" }) {
               </button>
             </form>
 
-            <div className="mt-8 text-center">
+            <div className="mt-8 text-center footer-nav">
               <button
                 onClick={() => setAuthMode(authMode === "login" ? "register" : "login")}
                 className="text-slate-500 hover:text-white text-sm transition-colors"

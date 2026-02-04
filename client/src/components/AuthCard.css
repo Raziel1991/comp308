@@ -32,8 +32,8 @@
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 920px; /* widened for better firework visibility */
-  padding: 3rem 2rem;
+  max-width: 420px;
+  padding: 2rem;
   perspective: 1000px;
 } 
 
@@ -43,24 +43,58 @@
   border-radius: 2.5rem;
   transition: transform 0.2s ease-out;
   transform-style: preserve-3d;
-  overflow: visible; /* allow spark to be visible outside */
-  z-index: 11;
+  overflow: hidden;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
- 
+/* Decorative rotating spark border */
+.spark-border {
+  position: absolute;
+  inset: -100%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 75%,
+    #6366f1 85%,
+    #a855f7 95%,
+    transparent 100%
+  );
+  animation: rotate-spark 3s linear infinite;
+}
 
-/* Card background layers (kept for compatibility) */
+@keyframes rotate-spark {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Starfield / Parallax Dust */
+.card-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: radial-gradient(#fff 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.15;
+  animation: stars-move 120s linear infinite;
+  pointer-events: none;
+  transition: transform 0.3s ease-out;
+}
+
+@keyframes stars-move {
+  from { background-position: 0 0; }
+  to { background-position: -1000px 0; }
+}
+
 .auth-card-inner {
   position: relative;
-  z-index: 10;
-  background-color: rgba(13, 15, 20, 0.86); /* slightly more transparent so glow shows through */
+  background-color: rgba(13, 15, 20, 0.96);
   backdrop-filter: blur(40px);
   padding: 2.5rem;
   border-radius: 2.4rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .brand-icon {
@@ -70,6 +104,8 @@
   background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(168, 85, 247, 0.2));
   border: 1px solid rgba(255, 255, 255, 0.05);
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 10;
 }
 
 .brand-title {
@@ -78,6 +114,8 @@
   letter-spacing: -0.05em;
   color: white;
   margin: 0;
+  position: relative;
+  z-index: 10;
 }
 
 .brand-subtitle {
@@ -87,6 +125,13 @@
   color: #64748b;
   text-transform: uppercase;
   margin-top: 0.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.auth-form {
+  position: relative;
+  z-index: 10;
 }
 
 .auth-input {
@@ -118,6 +163,7 @@
   overflow: hidden;
   transition: transform 0.1s;
   background: linear-gradient(135deg, #4f46e5, #7e22ce);
+  z-index: 10;
 }
 
 .auth-submit-btn:active { transform: scale(0.97); }
@@ -131,6 +177,8 @@
   font-size: 0.75rem;
   font-weight: 700;
   border: 1px solid transparent;
+  position: relative;
+  z-index: 20;
 }
 .alert-error { background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.2); color: #f87171; }
 .alert-success { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2); color: #34d399; }
@@ -152,6 +200,11 @@
   letter-spacing: 0.1em;
   color: #475569;
   font-weight: 600;
+}
+
+.footer-nav {
+  position: relative;
+  z-index: 10;
 }
 
 @media (prefers-reduced-motion: reduce) {
