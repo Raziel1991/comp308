@@ -8,8 +8,8 @@ function setAuthCookie(res, token) {
 
   res.cookie("token", token, {
     httpOnly: true,
-    secure,           // true in HTTPS production
-    sameSite: "lax",  // localhost ports are still same-site
+    secure,           // must be true for sameSite: "none"
+    sameSite: secure ? "none" : "lax",  // "none" for cross-origin, "lax" for local dev
     maxAge: 1000 * 60 * 60 * 24, // 1 day
   });
 }
@@ -92,7 +92,11 @@ export async function logout(req, res, next) {
     const secure = String(process.env.COOKIE_SECURE).toLowerCase() === "true";
 
     // Match cookie options to ensure it clears correctly
-    res.clearCookie("token", { httpOnly: true, sameSite: "lax", secure });
+    res.clearCookie("token", { 
+      httpOnly: true, 
+      sameSite: secure ? "none" : "lax", 
+      secure 
+    });
 
     return res.json({ msg: "Logged out" });
   } catch (err) {
