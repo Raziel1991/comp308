@@ -53,15 +53,18 @@ export async function deleteGame(req, res) {
 
 export async function myCollection(req, res) {
   const includeDetails = String(req.query.details).toLowerCase() === "true";
+  // select both names just in case older records used gamesOwned
   const user = await User.findById(req.user.id)
-    .select("games")
+    .select("games gamesOwned")
     .populate(includeDetails ? "games" : "");
 
   if (!user) return res.status(404).json({ msg: "User not found" });
 
-  if (includeDetails) return res.json(user.games);
-  return res.json(user.games.map(g => g.toString()));
-}
+  const gamesField = user.games || user.gamesOwned || [];
+
+  if (includeDetails) return res.json(gamesField);
+  return res.json(gamesField.map(g => g.toString()));
+} 
 
 export async function addToCollection(req, res) {
   const { gameId } = req.body;
@@ -70,24 +73,29 @@ export async function addToCollection(req, res) {
   const game = await Game.findById(gameId);
   if (!game) return res.status(404).json({ msg: "Game not found" });
 
-  const user = await User.findById(req.user.id).select("games");
+  const user = await User.findById(req.user.id).select("games gamesOwned");
   if (!user) return res.status(404).json({ msg: "User not found" });
+
+  // normalize to `games` for consistent handling
+  if (!user.games) user.games = user.gamesOwned || [];
 
   const already = user.games.some(id => id.toString() === gameId);
   if (!already) user.games.push(game._id);
 
   await user.save();
-  res.json(user.games.map(g => g.toString()));
-}
+  res.json((user.games || []).map(g => g.toString()));
+} 
 
 export async function removeFromCollection(req, res) {
   const { gameId } = req.params;
 
-  const user = await User.findById(req.user.id).select("games");
+  const user = await User.findById(req.user.id).select("games gamesOwned");
   if (!user) return res.status(404).json({ msg: "User not found" });
+
+  if (!user.games) user.games = user.gamesOwned || [];
 
   user.games = user.games.filter(id => id.toString() !== gameId);
   await user.save();
 
-  res.json(user.games.map(g => g.toString()));
+  res.json((user.games || []).map(g => g.toString()));
 }

@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 6,
     },
-    gamesOwned: [{
+    // Use field name `games` to match controller expectations
+    games: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Game",
     }],
