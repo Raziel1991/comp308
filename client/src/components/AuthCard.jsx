@@ -48,7 +48,7 @@ export default function AuthCard({ onAuthed, showMsg, initialMode = "login" }) {
   const submit = async (e) => {
     e.preventDefault();
     if (!formData.username.trim() || !formData.password) {
-      showMsg("Username and password required.", "danger");
+      showLocalMsg("Username and password required.", "error");
       return;
     }
     setBusy(true);
@@ -58,7 +58,7 @@ export default function AuthCard({ onAuthed, showMsg, initialMode = "login" }) {
       showMsg(`Welcome, ${data.username}!`);
       onAuthed(data.username);
     } catch (err) {
-      showMsg(err.message || "Auth failed", "danger");
+      showLocalMsg(err.message || "Auth failed", "error");
     } finally {
       setBusy(false);
     }
